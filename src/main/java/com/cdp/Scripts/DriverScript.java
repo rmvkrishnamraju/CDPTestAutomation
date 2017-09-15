@@ -129,7 +129,7 @@ class MainThread  {
 			//Reexecuted();
 			closebrowsers();
 			AutomationTestReport();
-			SendEmail();
+			//SendEmail();
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -581,7 +581,7 @@ class MainThread  {
 		// Sender's email ID needs to be mentioned
 		String from = "mohan.nimmala@quantela.com";
 		final String username = "mohan.nimmala@quantela.com";//change accordingly
-		final String password = "Mobily1981";//change accordingly
+		final String password = "";//change accordingly
 		
 		// Assuming you are sending email through relay.jangosmtp.net
 		String host = "smtp.gmail.com";
