@@ -1,0 +1,58 @@
+15/09/2017 10:24:49 com.cdp.Scripts.MainThread Chrome browser Started
+15/09/2017 10:24:49 com.cdp.Scripts.MainThread Calling MainScript
+15/09/2017 10:24:49 com.cdp.Scripts.MainThread Chrome::Browser Executing MainScript
+15/09/2017 10:24:49 com.cdp.Scripts.MainThread Chrome::GETTING DATE AND START TIME
+15/09/2017 10:24:49 com.cdp.Scripts.MainThread Chrome::INITIALIZING TEST RESULTS FOLDER WITH SYS DATE
+15/09/2017 10:24:49 com.cdp.Scripts.MainThread Chrome::FolderName2017-09-15
+15/09/2017 10:24:49 com.cdp.Scripts.MainThread Chrome::INITIALIZING SUBFOLDER NAME WITH SYS DATE, TIME IN HH:MM
+15/09/2017 10:24:49 com.cdp.Scripts.MainThread Chrome::SubFolderNameChrome-Results-10-24-49
+15/09/2017 10:24:49 com.cdp.Scripts.MainThread Chrome::Creatring Directory With Current Date
+15/09/2017 10:24:49 com.cdp.Scripts.MainThread Chrome::Created Directory With Current Date
+15/09/2017 10:24:49 com.cdp.Scripts.MainThread Chrome::Creating SubDirectory With Current TimeStamp & Browser Name
+15/09/2017 10:24:49 com.cdp.Scripts.MainThread Chrome::COPYING CDP_Automation_Test_Report HTML FILE FROM INPUT FOLDER TO OUTPUT FOLDER
+15/09/2017 10:24:49 com.cdp.Scripts.MainThread Chrome::COPY COMPLETED FOR CDP_Automation_Test_Report HTML FILE FROM INPUT FOLDER TO OUTPUT FOLDER
+15/09/2017 10:24:49 com.cdp.Scripts.MainThread Chrome::Created SubDirectory With Current TimeStamp & Browser Name
+15/09/2017 10:24:49 com.cdp.Scripts.MainThread Chrome::COPYING Suite_Web XLS FILE FROM INPUT FOLDER TO OUTPUT FOLDER
+15/09/2017 10:24:49 com.cdp.Scripts.MainThread Chrome::COPY COMPLETED FOR Suite_Web XLS FILE FROM INPUT FOLDER TO OUTPUT FOLDER
+15/09/2017 10:24:49 com.cdp.Scripts.MainThread Chrome::COPYING Results XLS FILE FROM INPUT FOLDER TO OUTPUT FOLDER
+15/09/2017 10:24:49 com.cdp.Scripts.MainThread Chrome::COPY COMPLETED FOR Results XLS FILE FROM INPUT FOLDER TO OUTPUT FOLDER
+15/09/2017 10:24:49 com.cdp.Scripts.MainThread Chrome::READING SUITE_WEB XLS FILE FROM OUTPUT DIRECTORY
+15/09/2017 10:24:49 com.cdp.Scripts.MainThread CustomerPortal -- Y
+15/09/2017 10:24:49 com.cdp.Scripts.MainThread Chrome::COPYING CustomerPortal XLS FILE FROM INPUT FOLDER TO OUTPUT FOLDER
+15/09/2017 10:24:49 com.cdp.Scripts.MainThread Chrome::COPY COMPLETED FOR CustomerPortal XLS FILE FROM INPUT FOLDER TO OUTPUT FOLDER
+15/09/2017 10:24:50 com.cdp.Scripts.MainThread CPDashBoard -- Y
+15/09/2017 10:24:50 com.cdp.Scripts.MainThread Chrome**********Executing Test Cases**********CPDashBoard
+15/09/2017 10:24:50 com.cdp.Scripts.MainThread Creating Result Column In Current Test Steps and Test Cases Sheet
+15/09/2017 10:24:50 com.cdp.Scripts.MainThread ******Looping CPDashBoard ::Steps
+15/09/2017 10:24:50 com.cdp.Scripts.MainThread TSID::TS01
+15/09/2017 10:24:50 com.cdp.Scripts.MainThread executing current keyword::LaunchWebBrowser
+15/09/2017 10:24:50 com.cdp.Scripts.MainThread executing keyword target::
+15/09/2017 10:24:50 com.cdp.Scripts.MainThread data::
+15/09/2017 10:24:50 com.cdp.Scripts.MainThread TCID::CPDashBoard
+15/09/2017 10:24:50 com.cdp.Scripts.MainThread Proceed_ON_FAIL::NO
+15/09/2017 10:24:50 com.cdp.Scripts.MainThread Launching 1st Chrome ::Browser
+15/09/2017 10:24:50 com.cdp.Scripts.Keywords LaunchingChromeBrowser
+15/09/2017 10:24:55 com.cdp.Scripts.MainThread ******Looping CPDashBoard ::Steps
+15/09/2017 10:24:55 com.cdp.Scripts.MainThread TSID::TS02
+15/09/2017 10:24:55 com.cdp.Scripts.MainThread executing current keyword::OpenWebApp
+15/09/2017 10:24:55 com.cdp.Scripts.MainThread executing keyword target::VNS_URL
+15/09/2017 10:24:55 com.cdp.Scripts.MainThread data::
+15/09/2017 10:24:55 com.cdp.Scripts.MainThread TCID::CPDashBoard
+15/09/2017 10:24:55 com.cdp.Scripts.MainThread Proceed_ON_FAIL::NO
+15/09/2017 10:24:55 com.cdp.Scripts.Keywords Application Opening
+15/09/2017 10:25:02 com.cdp.Scripts.MainThread resultset[PASS, PASS]
+15/09/2017 10:25:02 com.cdp.Scripts.MainThread ******Looping CPDashBoard ::Steps
+15/09/2017 10:25:02 com.cdp.Scripts.MainThread TSID::TS03
+15/09/2017 10:25:02 com.cdp.Scripts.MainThread executing current keyword::verifyTitle
+15/09/2017 10:25:02 com.cdp.Scripts.MainThread executing keyword target::
+15/09/2017 10:25:02 com.cdp.Scripts.MainThread data::Verizon
+15/09/2017 10:25:02 com.cdp.Scripts.MainThread TCID::CPDashBoard
+15/09/2017 10:25:02 com.cdp.Scripts.MainThread Proceed_ON_FAIL::NO
+15/09/2017 10:25:02 com.cdp.Scripts.Keywords Verification of App Title
+15/09/2017 10:25:02 com.cdp.Scripts.Keywords Verifying Title
+15/09/2017 10:25:03 com.cdp.Scripts.MainThread resultset[PASS, PASS, FAIL]
+15/09/2017 10:25:03 com.cdp.Scripts.MainThread Stopping Current Test Cases Execution because Test Step is Failed and Proceed_ON_FAIL=NO
+15/09/2017 10:25:06 com.cdp.Scripts.MainThread Calling printresults Function To Print PASS/FAIL Status In Results Sheet
+15/09/2017 10:25:07 com.cdp.Scripts.MainThread CPWidgetDrapDrop -- N
+15/09/2017 10:25:07 com.cdp.Scripts.MainThread CPMapView -- N
+15/09/2017 10:25:19 com.cdp.Scripts.MainThread Chrome exiting...

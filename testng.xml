@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" verbose="3" parallel="tests">
+
+<test name="CDP Chrome">
+	 <parameter name="browser" value="Chrome"></parameter>
+		<classes>
+			<class name="com.cdp.Scripts.DriverScript" />
+		</classes>
+	</test>
+	
+<!-- 	
+<test name="CDP FF">
+	    <parameter name="browser" value="FF"></parameter>
+		<classes>
+			<class name="com.cdp.Scripts.DriverScript" />
+		</classes>
+	</test> -->
+	
+	   <!-- <test name="CDP IE">
+	    <parameter name="browser" value="IE"></parameter>
+		<classes>
+			<class name="com.cdp.Scripts.DriverScript" />
+		</classes>
+	</test> -->
+	
+ </suite>
+
