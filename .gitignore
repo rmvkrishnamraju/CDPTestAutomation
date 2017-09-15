@@ -1,0 +1,17 @@
+
+.classpath
+.project
+.settings/org.eclipse.core.resources.prefs
+*.prefs
+*.class
+*.lst
+*.png
+*.gif
+*.js
+*.css
+target/classes/extent-config.xml
+target/surefire-reports/index.html
+target/surefire-reports/old/index.html
+target/surefire-reports/emailable-report.html
+target/classes/log4j.properties
+.*target
