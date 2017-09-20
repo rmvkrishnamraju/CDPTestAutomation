@@ -579,17 +579,30 @@ class MainThread  {
 		}
 	public void SendEmail() {
 		// Sender's email ID needs to be mentioned
-		String from = "mohan.nimmala@quantela.com";
-		final String username = "mohan.nimmala@quantela.com";//change accordingly
-		final String password = "Mobily1981";//change accordingly
+		System.out.println("******************************************Executing Send Email");
+		String from = "automationcdp3@gmail.com";
+		final String username = "automationcdp3@gmail.com";//change accordingly
+		final String password = "cdp@1234";//change accordingly
 		
 		// Assuming you are sending email through relay.jangosmtp.net
 		String host = "smtp.gmail.com";
+		System.out.println("after host");
 		Properties props = new Properties();
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.host", host);
-		props.put("mail.smtp.port", "587");
+//		props.put("mail.smtp.starttls.enable", "true");
+//		props.put("mail.smtp.auth", "true");
+//		props.put("mail.smtp.starttls.enable", "true");
+//		props.put("mail.smtp.host", host);
+//		props.put("mail.smtp.port", "587");
+//		System.out.println("after port");
+		
+	    props.setProperty("mail.transport.protocol", "smtp");     
+	    props.setProperty("mail.host", "smtp.gmail.com");  
+	    props.put("mail.smtp.auth", "true");  
+	    props.put("mail.smtp.port", "465");  
+	    props.put("mail.debug", "true");  
+	    props.put("mail.smtp.socketFactory.port", "465");  
+	    props.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");  
+	    props.put("mail.smtp.socketFactory.fallback", "false");
 		
 		// Get the Session object.
 		
@@ -608,6 +621,7 @@ class MainThread  {
 	         // Set To: header field of the header.
 	         String[] to =CONFIG.getProperty("EmailAccountsForReports").split("\\|");
 	         //String[] to = {"nmksridhar@gmail.com","mohan.nimmala@mtuity.com"};
+	         System.out.println("EmailAccountsForReports");
 	         try {
 	        	 InternetAddress[] addressTo = new InternetAddress[to.length];
 	             for (int i = 0; i < to.length; i++)
@@ -658,6 +672,8 @@ class MainThread  {
 	         }
 	         message.setContent(multipart);
 	         message.setSentDate(new Date(startTime));
+	         System.out.println("Before Transport Send");
+	           
 	         Transport.send(message);
 	                  
 	       } catch (MessagingException e) {
