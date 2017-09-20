@@ -21,10 +21,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
+import com.gargoylesoftware.htmlunit.BrowserVersion;
 
 public class Keywords {
 	public  WebDriver driver1;
@@ -62,7 +65,20 @@ public class Keywords {
 					System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/External Library Files/chromedriver_win32/chromedriver.exe");
 					driver1 =new ChromeDriver();
 					return driver1;
+				}else if(browser.equals("HtmlUnitChrome")){
+					driver1 =new HtmlUnitDriver(BrowserVersion.CHROME);
+					((HtmlUnitDriver) driver1).setJavascriptEnabled(true);
+					return driver1;
+				}else if(browser.equals("HtmlUnitFireFox")){
+					driver1 =new HtmlUnitDriver(BrowserVersion.FIREFOX_52);
+					((HtmlUnitDriver) driver1).setJavascriptEnabled(true);
+					return driver1;
+				}else if(browser.equals("HtmlUnitIE")){
+					driver1 =new HtmlUnitDriver(BrowserVersion.INTERNET_EXPLORER);
+					((HtmlUnitDriver) driver1).setJavascriptEnabled(true);
+					return driver1;
 				}
+				
 				}catch(Exception e){
 					//ScreenShot(target, data, Correct_Data, Createuser, browser, ExpectedErrorMsg, currentTestName, currentTSID, currentDSID);
 					e.printStackTrace();
@@ -707,6 +723,7 @@ public class Keywords {
 		 public String ScreenShot(WebDriver driver, String browser,  String target, String data, File SubFolderPath, String TCID, String TSID,  String DSID, String Correct_Data, int currentTestDataSetID, String user, Xlsx_Reader currentTestSuiteXLS, String currentTestCaseName) throws InterruptedException, IOException{
 			   //APP_LOGS.debug("Click on Button");
 			   try{
+				System.out.println("******************************************************");
 			    File file=((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			    String filepath = (SubFolderPath+"/"+"ScreenShots"+"/");
 			    String filetype = ".jpg";
