@@ -15,3 +15,4 @@ target/surefire-reports/old/index.html
 target/surefire-reports/emailable-report.html
 target/classes/log4j.properties
 .*target
+/target/

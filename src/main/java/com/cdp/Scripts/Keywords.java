@@ -1,4 +1,4 @@
-package com.cdp.Scripts;
+package main.java.com.cdp.Scripts;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,13 +20,20 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.ie.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import main.java.com.cdp.Scripts.MainThread;
 
-public class Keywords {
+import com.gargoylesoftware.htmlunit.BrowserVersion;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
+
+public class Keywords{
 	public  WebDriver driver1;
 	public Actions actions;
 	public WebDriver driver2;
@@ -48,21 +55,24 @@ public class Keywords {
 					driver1 = new InternetExplorerDriver();
 					return driver1;
 				}else if(browser.equals("FF")){
-					//System.setProperty("webdriver.gecko.driver", "D:/MohanBaseFramework/VNSAutomationFramewok/External Library Files/geckodriver-v0.15.0-win64/geckodriver.exe");
-					//Now you can Initialize marionette driver to launch firefox
-					DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-					//capabilities.setCapability("marionette", true);
-					//driver1= new MarionetteDriver(capabilities);
-					capabilities.setBrowserName("firefox");
-					capabilities.setCapability("binary", "C:/Program Files (x86)/Mozilla Firefox/firefox.exe");
-					capabilities.setPlatform(Platform.ANY);					
-					driver1=new FirefoxDriver(capabilities);
+					System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir")+"/External Library Files/geckodriver-v0.17.0-win64/geckodriver.exe");
+					driver1=new FirefoxDriver();
 					//driver1=new FirefoxDriver();
 				}else if(browser.equals("Chrome")){
 					System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/External Library Files/chromedriver_win32/chromedriver.exe");
 					driver1 =new ChromeDriver();
 					return driver1;
+				}else if(browser.equals("HeadLessBrowser")){
+					//driver1 =new HtmlUnitDriver(BrowserVersion.CHROME);
+					System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/External Library Files/chromedriver_win32/chromedriver.exe");
+					ChromeOptions sd=new ChromeOptions();
+				     sd.addArguments("headless");
+				     sd.addArguments("window-size=1400,600");
+				     driver1 =new ChromeDriver(sd);
+				     System.out.println(driver1.getClass().getName());
+				     return driver1;
 				}
+				
 				}catch(Exception e){
 					//ScreenShot(target, data, Correct_Data, Createuser, browser, ExpectedErrorMsg, currentTestName, currentTSID, currentDSID);
 					e.printStackTrace();
@@ -317,14 +327,14 @@ public class Keywords {
 			   //APP_LOGS.debug("Input The Value In Test Box");
 			   try{
 				   if(Correct_Data.equals("Y")){
-					  driver.findElement(By.xpath(MainThread.CONFIG.getProperty("atlantis_Dashboardtext"))).isDisplayed();
-					  driver.findElement(By.xpath(MainThread.CONFIG.getProperty("user_Profilename"))).isDisplayed();
+					  driver.findElement(By.xpath(MainThread.CONFIG.getProperty("users_Button"))).isDisplayed();
+					  driver.findElement(By.xpath(MainThread.CONFIG.getProperty("regions_Butoon"))).isDisplayed();
 					  MainThread.APP_LOGS.debug("Login Success and user navigated to Dashboard screen");
 					  return "PASS"; 
 				   }
 				   else{
-					   driver.findElement(By.xpath(MainThread.CONFIG.getProperty("username"))).isDisplayed();
-					   driver.findElement(By.xpath(MainThread.CONFIG.getProperty("password"))).isDisplayed();
+					   driver.findElement(By.xpath(MainThread.CONFIG.getProperty("UserName"))).isDisplayed();
+					   driver.findElement(By.xpath(MainThread.CONFIG.getProperty("Password"))).isDisplayed();
 					   MainThread.APP_LOGS.debug("User retained in Login screen with invalid data");
 					   return "PASS";	   
 				   }
@@ -716,7 +726,26 @@ public class Keywords {
 			    return "PASS";
 			   }catch(Exception e){
 			    //MainThread.APP_LOGS.debug(e);
-			    return "FAIL";
+				   e.printStackTrace();
+				   return "FAIL";
+			   }
+			  }
+		 
+		 
+		//METHOD WILL COPY SCREENSHOT TO EXTEND REPORT WHEN TEST STEP FAIL
+		 public String ExtentReportScreenShot(WebDriver driver, String browser,  String target, String data, File SubFolderPath, String TCID, String TSID,  String DSID, String Correct_Data, int currentTestDataSetID, String user, Xlsx_Reader currentTestSuiteXLS, String currentTestCaseName, ExtentTest logger, String Keyword) throws InterruptedException, IOException{
+			   //APP_LOGS.debug("Click on Button");
+			   try{
+			    //File file=((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+			    String filepath = (SubFolderPath+"/"+"ScreenShots"+"/");
+			    String filetype = ".jpg";
+			    String filenamepath = filepath+TCID+"-"+TSID+"-"+DSID+filetype;
+			    logger.log(LogStatus.FAIL, TSID+"  :  "+Keyword+"" + logger.addScreenCapture(filenamepath));
+			    return "PASS";
+			   }catch(Exception e){
+			    //MainThread.APP_LOGS.debug(e);
+				   e.printStackTrace();
+				   return "FAIL";
 			   }
 			  }
 		//*****CloseWebApp Method*********
