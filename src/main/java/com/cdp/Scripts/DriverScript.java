@@ -1,4 +1,4 @@
-package com.cdp.Scripts;
+package main.java.com.cdp.Scripts;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
