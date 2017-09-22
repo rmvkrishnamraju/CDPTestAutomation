@@ -2,12 +2,12 @@
 <testng-results skipped="0" failed="0" ignored="0" total="0" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Suite" duration-ms="30484" started-at="2017-09-15T04:54:49Z" finished-at="2017-09-15T04:55:19Z">
+  <suite name="Suite" duration-ms="26521" started-at="2017-09-20T08:02:53Z" finished-at="2017-09-20T08:03:20Z">
     <groups>
     </groups>
-    <test name="CDP Chrome" duration-ms="30484" started-at="2017-09-15T04:54:49Z" finished-at="2017-09-15T04:55:19Z">
-      <class name="com.cdp.Scripts.DriverScript">
-        <test-method status="PASS" signature="first(java.lang.String)[pri:0, instance:com.cdp.Scripts.DriverScript@2acf57e3]" name="first" is-config="true" duration-ms="30475" started-at="2017-09-15T10:24:49Z" finished-at="2017-09-15T10:25:19Z">
+    <test name="CDP Chrome" duration-ms="26521" started-at="2017-09-20T08:02:53Z" finished-at="2017-09-20T08:03:20Z">
+      <class name="main.java.com.cdp.Scripts.DriverScript">
+        <test-method status="PASS" signature="first(java.lang.String)[pri:0, instance:main.java.com.cdp.Scripts.DriverScript@2acf57e3]" name="first" is-config="true" duration-ms="26511" started-at="2017-09-20T13:32:53Z" finished-at="2017-09-20T13:33:20Z">
           <params>
             <param index="0">
               <value>
@@ -18,7 +18,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- first -->
-      </class> <!-- com.cdp.Scripts.DriverScript -->
+      </class> <!-- main.java.com.cdp.Scripts.DriverScript -->
     </test> <!-- CDP Chrome -->
   </suite> <!-- Suite -->
 </testng-results>
