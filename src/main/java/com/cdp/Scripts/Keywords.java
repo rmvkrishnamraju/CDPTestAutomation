@@ -1,4 +1,4 @@
-package com.cdp.Scripts;
+package main.java.com.cdp.Scripts;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,9 +20,11 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -59,8 +61,17 @@ public class Keywords {
 					driver1=new FirefoxDriver(capabilities);
 					//driver1=new FirefoxDriver();
 				}else if(browser.equals("Chrome")){
-					System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/External Library Files/chromedriver_win32/chromedriver.exe");
-					driver1 =new ChromeDriver();
+					System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/External Library Files/chromedriver_win32/chromedriver");
+					ChromeOptions c=new ChromeOptions();
+					c.addArguments("headless");
+					c.addArguments("window-size=1400,600");
+					driver1 =new ChromeDriver(c);
+					return driver1;
+				}
+				else if(browser.equals("Headless")){
+					File file = new File("/Users/macmini/Downloads/phantomjs-2.1.1-macosx/bin/phantomjs");
+                    System.setProperty("phantomjs.binary.path", file.getAbsolutePath());
+                    driver1 = new PhantomJSDriver();
 					return driver1;
 				}
 				}catch(Exception e){
@@ -70,6 +81,7 @@ public class Keywords {
 					}
 			//ScreenShot(target, data, Correct_Data, Createuser, browser, ExpectedErrorMsg, currentTestName, currentTSID, currentDSID);
 			return driver1;
+			
 		}
 		
 		//*****OpenWebApp Method*********

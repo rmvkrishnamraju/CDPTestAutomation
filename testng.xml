@@ -5,7 +5,13 @@
 <test name="CDP Chrome">
 	 <parameter name="browser" value="Chrome"></parameter>
 		<classes>
-			<class name="com.cdp.Scripts.DriverScript" />
+			<class name="main.java.com.cdp.Scripts.DriverScript" />
+		</classes>
+	</test>
+	<test name="CDP Headless">
+	 <parameter name="browser" value="Headless"></parameter>
+		<classes>
+			<class name="main.java.com.cdp.Scripts.DriverScript" />
 		</classes>
 	</test>
 	
@@ -13,14 +19,14 @@
 <test name="CDP FF">
 	    <parameter name="browser" value="FF"></parameter>
 		<classes>
-			<class name="com.cdp.Scripts.DriverScript" />
+			<class name="main.java.com.cdp.Scripts.DriverScript" />
 		</classes>
 	</test> -->
 	
 	   <!-- <test name="CDP IE">
 	    <parameter name="browser" value="IE"></parameter>
 		<classes>
-			<class name="com.cdp.Scripts.DriverScript" />
+			<class name="main.java.com.cdp.Scripts.DriverScript" />
 		</classes>
 	</test> -->
 	
