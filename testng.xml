@@ -3,27 +3,34 @@
 <suite name="Suite" verbose="3" parallel="tests">
 
 <test name="CDP Chrome">
-	 <parameter name="browser" value="Chrome"></parameter>
+	<parameter name="browser" value="Chrome"></parameter>
 		<classes>
 			<class name="main.java.com.cdp.Scripts.DriverScript" />
 		</classes>
-	</test>
-	
+</test>
 
-<!-- 	
-<test name="CDP FF">
-	    <parameter name="browser" value="FF"></parameter>
+<!-- <test name="CDP FF">
+	<parameter name="browser" value="FF"></parameter>
 		<classes>
 			<class name="main.java.com.cdp.Scripts.DriverScript" />
 		</classes>
-	</test> -->
-	
-	   <!-- <test name="CDP IE">
-	    <parameter name="browser" value="IE"></parameter>
+</test>
+ -->	
+<!-- <test name="CDP IE">
+	<parameter name="browser" value="IE"></parameter>
 		<classes>
 			<class name="main.java.com.cdp.Scripts.DriverScript" />
 		</classes>
-	</test> -->
-	
- </suite>
+</test>
+ -->
 
+<!-- <test name="CDP HeadLess">
+	<parameter name="browser" value="HeadLessBrowser"></parameter>
+		<classes>
+			<class name="main.java.com.cdp.Scripts.DriverScript" />
+		</classes>
+</test>
+ -->
+
+
+</suite>

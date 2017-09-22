@@ -27,6 +27,8 @@ import javax.mail.internet.MimeMessage.RecipientType;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -129,6 +131,7 @@ class MainThread  {
 			//Reexecuted();
 			closebrowsers();
 			AutomationTestReport();
+			copyExtentReportToJenkins();
 			SendEmail();
 			
 		} catch (Exception e) {
@@ -358,6 +361,7 @@ class MainThread  {
 									logger.log(LogStatus.PASS, TSID+"  :  "+Keyword+"");
 								}else{
 									logger.log(LogStatus.FAIL, TSID+"  :  "+Keyword+"");
+									keywords.ExtentReportScreenShot(driver2, browser, target, data, SubFolderPath, TCID, TSID, DSID, Correct_Data, currentTestDataSetID, user, currentTestSuiteXLS, currentTestCaseName, logger, Keyword);
 								}
 								addDriverResults(driver1);
 							}else if(user.equals("user2") && driver2==null){
@@ -371,6 +375,8 @@ class MainThread  {
 									logger.log(LogStatus.PASS, TSID+"  :  "+Keyword+"");
 								}else{
 									logger.log(LogStatus.FAIL, TSID+"  :  "+Keyword+"");
+									keywords.ExtentReportScreenShot(driver2, browser, target, data, SubFolderPath, TCID, TSID, DSID, Correct_Data, currentTestDataSetID, user, currentTestSuiteXLS, currentTestCaseName, logger, Keyword);
+
 								}
 								addDriverResults(driver2);
 							}else{
@@ -390,7 +396,8 @@ class MainThread  {
 								if (Keyword_execution_result_main.equals("PASS")){
 									logger.log(LogStatus.PASS, TSID+"  :  "+Keyword+"");
 								}else{
-									logger.log(LogStatus.FAIL, TSID+"  :  "+Keyword+"");
+									//logger.log(LogStatus.FAIL, TSID+"  :  "+Keyword+"");
+									keywords.ExtentReportScreenShot(driver1, browser, target, data, SubFolderPath, TCID, TSID, DSID, Correct_Data, currentTestDataSetID, user, currentTestSuiteXLS, currentTestCaseName, logger, Keyword);
 								}
 							}else{
 								long StepstartTime = System.currentTimeMillis();
@@ -402,6 +409,7 @@ class MainThread  {
 									logger.log(LogStatus.PASS, TSID+"  :  "+Keyword+"");
 								}else{
 									logger.log(LogStatus.FAIL, TSID+"  :  "+Keyword+"");
+									keywords.ExtentReportScreenShot(driver2, browser, target, data, SubFolderPath, TCID, TSID, DSID, Correct_Data, currentTestDataSetID, user, currentTestSuiteXLS, currentTestCaseName, logger, Keyword);
 								}
 							}
 						}
@@ -577,6 +585,15 @@ class MainThread  {
 				}
 			}
 		}
+	
+	public void copyExtentReportToJenkins() throws IOException{
+		//APP_LOGS.debug(browser+"::COPYING "+FileName+" HTML FILE FROM INPUT FOLDER TO OUTPUT FOLDER");
+		File source = new File(SubFolderPath+"/"+"OutPut_CDP_Automation_Test_Report.html");
+		File dest = new File("D:/jenkins-2.78/JenkinsHome/ExtendReports/OutPut_CDP_Automation_Test_Report.html");
+		FileUtils.copyFile(source, dest);
+		//APP_LOGS.debug(browser+"::COPY COMPLETED FOR "+FileName+" HTML FILE FROM INPUT FOLDER TO OUTPUT FOLDER");
+	}
+	
 	public void SendEmail() {
 		// Sender's email ID needs to be mentioned
 		System.out.println("******************************************Executing Send Email");
