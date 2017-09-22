@@ -361,7 +361,7 @@ class MainThread  {
 								ExecutionTime(StepEndTime, StepstartTime);
 								driver1=driver;
 								if (driver1!=null){
-									logger.log(LogStatus.PASS, "",TSID+"  :  "+Keyword+"");
+									logger.log(LogStatus.PASS, TSID+"  :  "+Keyword+"", Description);
 								}else{
 									logger.log(LogStatus.FAIL, TSID+"  :  "+Keyword+"");
 									keywords.ExtentReportScreenShot(driver2, browser, target, data, SubFolderPath, TCID, TSID, DSID, Correct_Data, currentTestDataSetID, user, currentTestSuiteXLS, currentTestCaseName, logger, Keyword);
@@ -375,7 +375,7 @@ class MainThread  {
 								ExecutionTime(StepEndTime, StepstartTime);
 								driver2=driver;
 								if (driver1!=null){
-									logger.log(LogStatus.PASS, TSID+"  :  "+Keyword+"");
+									logger.log(LogStatus.PASS, TSID+"  :  "+Keyword+"", Description);
 								}else{
 									logger.log(LogStatus.FAIL, TSID+"  :  "+Keyword+"");
 									keywords.ExtentReportScreenShot(driver2, browser, target, data, SubFolderPath, TCID, TSID, DSID, Correct_Data, currentTestDataSetID, user, currentTestSuiteXLS, currentTestCaseName, logger, Keyword);
@@ -384,7 +384,7 @@ class MainThread  {
 								addDriverResults(driver2);
 							}else{
 								APP_LOGS.debug(browser+ " ::Browser Already Running");
-								logger.log(LogStatus.PASS, TSID+"  :  "+Keyword+"  :  "+browser+ " ::Browser Already Running");
+								logger.log(LogStatus.PASS, TSID+"  :  "+Keyword, browser+ " ::Browser Already Running");
 								Keyword_execution_result_main="NO RUN";
 								resultSet.add(Keyword_execution_result_main);
 							}
@@ -397,7 +397,7 @@ class MainThread  {
 								resultSet.add(Keyword_execution_result_main);
 								APP_LOGS.debug("resultset"+resultSet);
 								if (Keyword_execution_result_main.equals("PASS")){
-									logger.log(LogStatus.PASS, TSID+"  :  "+Keyword+"");
+									logger.log(LogStatus.PASS, TSID+"  :  "+Keyword+"", Description);
 								}else{
 									//logger.log(LogStatus.FAIL, TSID+"  :  "+Keyword+"");
 									keywords.ExtentReportScreenShot(driver1, browser, target, data, SubFolderPath, TCID, TSID, DSID, Correct_Data, currentTestDataSetID, user, currentTestSuiteXLS, currentTestCaseName, logger, Keyword);
@@ -409,9 +409,8 @@ class MainThread  {
 								ExecutionTime(StepEndTime, StepstartTime);
 								resultSet.add(Keyword_execution_result_main);
 								if (Keyword_execution_result_main.equals("PASS")){
-									logger.log(LogStatus.PASS, TSID+"  :  "+Keyword+"");
+									logger.log(LogStatus.PASS, TSID+"  :  "+Keyword+"", Description);
 								}else{
-									logger.log(LogStatus.FAIL, TSID+"  :  "+Keyword+"");
 									keywords.ExtentReportScreenShot(driver2, browser, target, data, SubFolderPath, TCID, TSID, DSID, Correct_Data, currentTestDataSetID, user, currentTestSuiteXLS, currentTestCaseName, logger, Keyword);
 								}
 							}
