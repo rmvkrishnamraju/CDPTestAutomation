@@ -67,6 +67,7 @@ class MainThread  {
 	public String data;
 	public String user;
 	public String TCID;
+	public String Description;
 	public String TSID;
 	public String Proceed_ON_FAIL;
 	public String Correct_Data;
@@ -334,6 +335,8 @@ class MainThread  {
 				APP_LOGS.debug("data::"+data);
 				user=currentTestSuiteXLS.getCellData("TestSteps", "user", currentTestStepID);
 				TCID=currentTestSuiteXLS.getCellData("TestSteps", "TCID", currentTestStepID);
+				Description=currentTestSuiteXLS.getCellData("TestSteps", "Description", currentTestStepID);
+				
 				APP_LOGS.debug("TCID::"+TCID);
 				Proceed_ON_FAIL=currentTestSuiteXLS.getCellData("TestSteps", "Proceed_ON_FAIL", currentTestStepID);
 				APP_LOGS.debug("Proceed_ON_FAIL::"+Proceed_ON_FAIL);
@@ -358,7 +361,7 @@ class MainThread  {
 								ExecutionTime(StepEndTime, StepstartTime);
 								driver1=driver;
 								if (driver1!=null){
-									logger.log(LogStatus.PASS, TSID+"  :  "+Keyword+"");
+									logger.log(LogStatus.PASS, "",TSID+"  :  "+Keyword+"");
 								}else{
 									logger.log(LogStatus.FAIL, TSID+"  :  "+Keyword+"");
 									keywords.ExtentReportScreenShot(driver2, browser, target, data, SubFolderPath, TCID, TSID, DSID, Correct_Data, currentTestDataSetID, user, currentTestSuiteXLS, currentTestCaseName, logger, Keyword);
