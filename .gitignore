@@ -14,4 +14,14 @@ target/surefire-reports/index.html
 target/surefire-reports/old/index.html
 target/surefire-reports/emailable-report.html
 target/classes/log4j.properties
+target/classes/.gitignore
+target/surefire-reports/Suite/CDP Chrome.html
+target/surefire-reports/Suite/CDP Chrome.xml
+target/surefire-reports/TEST-TestSuite.xml
+target/surefire-reports/TestSuite.txt
+target/surefire-reports/old/Suite/methods-alphabetical.html
+target/surefire-reports/old/Suite/methods.html
+target/surefire-reports/old/Suite/testng.xml.html
+target/surefire-reports/testng-results.xml
 .*target
+/target/

@@ -27,6 +27,8 @@ import javax.mail.internet.MimeMessage.RecipientType;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -65,6 +67,7 @@ class MainThread  {
 	public String data;
 	public String user;
 	public String TCID;
+	public String Description;
 	public String TSID;
 	public String Proceed_ON_FAIL;
 	public String Correct_Data;
@@ -76,6 +79,7 @@ class MainThread  {
 	public long starttime1;
 	public long endtime1;
 	public String Result;
+	public String Priority;
 	public int count;
 	public String Keyword_execution_result_main;
 	public WebDriver driver;
@@ -129,7 +133,8 @@ class MainThread  {
 			//Reexecuted();
 			closebrowsers();
 			AutomationTestReport();
-			SendEmail();
+			copyExtentReportToJenkins();
+			//SendEmail();
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -331,6 +336,9 @@ class MainThread  {
 				APP_LOGS.debug("data::"+data);
 				user=currentTestSuiteXLS.getCellData("TestSteps", "user", currentTestStepID);
 				TCID=currentTestSuiteXLS.getCellData("TestSteps", "TCID", currentTestStepID);
+				Description=currentTestSuiteXLS.getCellData("TestSteps", "Description", currentTestStepID);
+				Priority=currentTestSuiteXLS.getCellData("TestSteps", "Description", currentTestStepID);
+				
 				APP_LOGS.debug("TCID::"+TCID);
 				Proceed_ON_FAIL=currentTestSuiteXLS.getCellData("TestSteps", "Proceed_ON_FAIL", currentTestStepID);
 				APP_LOGS.debug("Proceed_ON_FAIL::"+Proceed_ON_FAIL);
@@ -355,9 +363,10 @@ class MainThread  {
 								ExecutionTime(StepEndTime, StepstartTime);
 								driver1=driver;
 								if (driver1!=null){
-									logger.log(LogStatus.PASS, TSID+"  :  "+Keyword+"");
+									logger.log(LogStatus.PASS, TSID+"  :  "+Keyword+"", Description);
 								}else{
 									logger.log(LogStatus.FAIL, TSID+"  :  "+Keyword+"");
+									keywords.ExtentReportScreenShot(driver2, browser, target, data, SubFolderPath, TCID, TSID, DSID, Correct_Data, currentTestDataSetID, user, currentTestSuiteXLS, currentTestCaseName, logger, Keyword);
 								}
 								addDriverResults(driver1);
 							}else if(user.equals("user2") && driver2==null){
@@ -368,14 +377,16 @@ class MainThread  {
 								ExecutionTime(StepEndTime, StepstartTime);
 								driver2=driver;
 								if (driver1!=null){
-									logger.log(LogStatus.PASS, TSID+"  :  "+Keyword+"");
+									logger.log(LogStatus.PASS, TSID+"  :  "+Keyword+"", Description);
 								}else{
 									logger.log(LogStatus.FAIL, TSID+"  :  "+Keyword+"");
+									keywords.ExtentReportScreenShot(driver2, browser, target, data, SubFolderPath, TCID, TSID, DSID, Correct_Data, currentTestDataSetID, user, currentTestSuiteXLS, currentTestCaseName, logger, Keyword);
+
 								}
 								addDriverResults(driver2);
 							}else{
 								APP_LOGS.debug(browser+ " ::Browser Already Running");
-								logger.log(LogStatus.PASS, TSID+"  :  "+Keyword+"  :  "+browser+ " ::Browser Already Running");
+								logger.log(LogStatus.PASS, TSID+"  :  "+Keyword, browser+ " ::Browser Already Running");
 								Keyword_execution_result_main="NO RUN";
 								resultSet.add(Keyword_execution_result_main);
 							}
@@ -388,9 +399,10 @@ class MainThread  {
 								resultSet.add(Keyword_execution_result_main);
 								APP_LOGS.debug("resultset"+resultSet);
 								if (Keyword_execution_result_main.equals("PASS")){
-									logger.log(LogStatus.PASS, TSID+"  :  "+Keyword+"");
+									logger.log(LogStatus.PASS, TSID+"  :  "+Keyword+"", Description);
 								}else{
-									logger.log(LogStatus.FAIL, TSID+"  :  "+Keyword+"");
+									//logger.log(LogStatus.FAIL, TSID+"  :  "+Keyword+"");
+									keywords.ExtentReportScreenShot(driver1, browser, target, data, SubFolderPath, TCID, TSID, DSID, Correct_Data, currentTestDataSetID, user, currentTestSuiteXLS, currentTestCaseName, logger, Keyword);
 								}
 							}else{
 								long StepstartTime = System.currentTimeMillis();
@@ -399,9 +411,9 @@ class MainThread  {
 								ExecutionTime(StepEndTime, StepstartTime);
 								resultSet.add(Keyword_execution_result_main);
 								if (Keyword_execution_result_main.equals("PASS")){
-									logger.log(LogStatus.PASS, TSID+"  :  "+Keyword+"");
+									logger.log(LogStatus.PASS, TSID+"  :  "+Keyword+"", Description);
 								}else{
-									logger.log(LogStatus.FAIL, TSID+"  :  "+Keyword+"");
+									keywords.ExtentReportScreenShot(driver2, browser, target, data, SubFolderPath, TCID, TSID, DSID, Correct_Data, currentTestDataSetID, user, currentTestSuiteXLS, currentTestCaseName, logger, Keyword);
 								}
 							}
 						}
@@ -577,19 +589,40 @@ class MainThread  {
 				}
 			}
 		}
+	
+	public void copyExtentReportToJenkins() throws IOException{
+		//APP_LOGS.debug(browser+"::COPYING "+FileName+" HTML FILE FROM INPUT FOLDER TO OUTPUT FOLDER");
+		File source = new File(SubFolderPath+"/"+"OutPut_CDP_Automation_Test_Report.html");
+		File dest = new File("D:/jenkins-2.78/JenkinsHome/ExtendReports/OutPut_CDP_Automation_Test_Report.html");
+		FileUtils.copyFile(source, dest);
+		//APP_LOGS.debug(browser+"::COPY COMPLETED FOR "+FileName+" HTML FILE FROM INPUT FOLDER TO OUTPUT FOLDER");
+	}
+	
 	public void SendEmail() {
 		// Sender's email ID needs to be mentioned
-		String from = "mohan.nimmala@quantela.com";
-		final String username = "mohan.nimmala@quantela.com";//change accordingly
-		final String password = "";//change accordingly
+		String from = "automationcdp3@gmail.com";
+		final String username = "automationcdp3@gmail.com";//change accordingly
+		final String password = "cdp@1234";//change accordingly
 		
 		// Assuming you are sending email through relay.jangosmtp.net
 		String host = "smtp.gmail.com";
+		System.out.println("after host");
 		Properties props = new Properties();
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.host", host);
-		props.put("mail.smtp.port", "587");
+//		props.put("mail.smtp.starttls.enable", "true");
+//		props.put("mail.smtp.auth", "true");
+//		props.put("mail.smtp.starttls.enable", "true");
+//		props.put("mail.smtp.host", host);
+//		props.put("mail.smtp.port", "587");
+//		System.out.println("after port");
+		
+	    props.setProperty("mail.transport.protocol", "smtp");     
+	    props.setProperty("mail.host", "smtp.gmail.com");  
+	    props.put("mail.smtp.auth", "true");  
+	    props.put("mail.smtp.port", "465");  
+	    props.put("mail.debug", "true");  
+	    props.put("mail.smtp.socketFactory.port", "465");  
+	    props.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");  
+	    props.put("mail.smtp.socketFactory.fallback", "false");
 		
 		// Get the Session object.
 		
@@ -608,6 +641,7 @@ class MainThread  {
 	         // Set To: header field of the header.
 	         String[] to =CONFIG.getProperty("EmailAccountsForReports").split("\\|");
 	         //String[] to = {"nmksridhar@gmail.com","mohan.nimmala@mtuity.com"};
+	         System.out.println("EmailAccountsForReports");
 	         try {
 	        	 InternetAddress[] addressTo = new InternetAddress[to.length];
 	             for (int i = 0; i < to.length; i++)
@@ -658,6 +692,8 @@ class MainThread  {
 	         }
 	         message.setContent(multipart);
 	         message.setSentDate(new Date(startTime));
+	         System.out.println("Before Transport Send");
+	           
 	         Transport.send(message);
 	                  
 	       } catch (MessagingException e) {
